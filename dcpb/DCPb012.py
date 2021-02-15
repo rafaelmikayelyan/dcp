@@ -38,6 +38,9 @@ class Test(unittest.TestCase):
     def test_array_correct(self):
         self.assertEqual(dcpb012([1, 2, 3, 4, 5]), (0, 0), "should be (1, 3)")
 
+    def test_array_reverse(self):
+        self.assertEqual(dcpb012([9, 8, 7, 6, 5, 4, 3, 2, 1]), (0, 8), "should be (1, 3)")
+
     def test_array_of_5(self):
         self.assertEqual(dcpb012([3, 7, 5, 6, 9]), (1, 3), "should be (1, 3)")
 
