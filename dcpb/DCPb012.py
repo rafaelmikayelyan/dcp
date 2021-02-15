@@ -7,6 +7,8 @@ import unittest
 
 def dcpb012(array):
     left = get_left(array)
+    if left == len(array):
+        return 0, 0
     return left, get_right(array, left)
 
 
