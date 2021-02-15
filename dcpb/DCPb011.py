@@ -1,13 +1,13 @@
-# Problem: given an arr of int, return a new arr
-# such that each element at i of the new arr is
-# the product of all the num in the original arr
-# except the one at i.
+# Problem 1.1: given an arr of int, return a new
+# arr such that each element at i of the new arr
+# is the product of all the num in the original
+# arr except the one at i.
 # Extra: no division.
 
 import unittest
 
 
-def dcpb001(array):
+def dcpb011(array):
     if check_array(array):
         return divide_product(array, array_product(array))
     else:
