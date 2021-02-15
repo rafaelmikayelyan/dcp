@@ -8,7 +8,7 @@ import unittest
 
 
 def dcpb011(array):
-    if check_array(array):
+    if check_array_is_valid(array):
         return divide_product(array, array_product(array))
     else:
         return False
@@ -26,22 +26,29 @@ def array_product(array):
 def divide_product(array, product):
     i = 0
     while i < len(array):
-        # / returns float, // returns integer
+        # '/' returns float, '//' returns integer
         array[i] = product // array[i]
         i += 1
     return array
 
 
-def check_array(array):
+def check_array_is_valid(array):
+    if check_array_length(array) or check_array_int(array):
+        return False
+    return True
+
+
+def check_array_length(array):
     if not (hasattr(array, "__len__")):
-        return False
+        return True
     if len(array) < 2:
-        return False
+        return True
+
+
+def check_array_int(array):
     for i in array:
         if not isinstance(i, int):
-            return False
-    else:
-        return True
+            return True
 
 
 class Test(unittest.TestCase):
