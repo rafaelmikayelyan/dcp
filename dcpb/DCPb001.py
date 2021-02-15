@@ -2,7 +2,40 @@ import unittest
 
 
 def dcpb001(array):
-    pass
+    if check_array(array):
+        return divide_product(array, array_product(array))
+    else:
+        return False
+
+
+def array_product(array):
+    product = 1
+    i = 0
+    while i < len(array):
+        product = product * array[i]
+        i += 1
+    return product
+
+
+def divide_product(array, product):
+    i = 0
+    while i < len(array):
+        # / returns float, // returns integer
+        array[i] = product // array[i]
+        i += 1
+    return array
+
+
+def check_array(array):
+    if not (hasattr(array, "__len__")):
+        return False
+    if len(array) < 2:
+        return False
+    for i in array:
+        if not isinstance(i, int):
+            return False
+    else:
+        return True
 
 
 class Test(unittest.TestCase):
