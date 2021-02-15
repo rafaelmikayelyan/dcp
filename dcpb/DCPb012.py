@@ -33,8 +33,17 @@ def get_right(array, left):
 
 
 class Test(unittest.TestCase):
-    def test_array_of_8(self):
+    def test_array_correct(self):
+        self.assertEqual(dcpb012([1, 2, 3, 4, 5]), (0, 0), "should be (1, 3)")
+
+    def test_array_of_5(self):
         self.assertEqual(dcpb012([3, 7, 5, 6, 9]), (1, 3), "should be (1, 3)")
+
+    def test_array_of_8(self):
+        self.assertEqual(dcpb012([1, 2, 3, 7, 5, 6, 4, 8]), (3, 6), "should be (1, 3)")
+
+    def test_array_of_9(self):
+        self.assertEqual(dcpb012([1, 3, 2, 7, 5, 6, 4, 8, 9]), (1, 6), "should be (1, 3)")
 
 
 if __name__ == '__main__':
