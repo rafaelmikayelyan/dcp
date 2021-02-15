@@ -1,3 +1,9 @@
+# Problem: given an arr of int, return a new arr
+# such that each element at i of the new arr is
+# the product of all the num in the original arr
+# except the one at i.
+# Extra: no division.
+
 import unittest
 
 
