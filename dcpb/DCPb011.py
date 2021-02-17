@@ -32,6 +32,10 @@ def divide_product(array, product):
     return array
 
 
+def dcpb011_extra(array):
+    return False
+
+
 def check_array_is_valid(array):
     if check_array_length(array) or check_array_int(array):
         return False
@@ -76,6 +80,29 @@ class Test(unittest.TestCase):
     def test_array_of_5(self):
         self.assertEqual(dcpb011([1, 2, 3, 4, 5]), [120, 60, 40, 30, 24], "should be [120, 60, 40, 30, 24]")
 
+    def test_extra_array_wrong_input_str(self):
+        self.assertFalse(dcpb011_extra("x"), "should be an array of #'s size=2+")
+
+    def test_extra_array_wrong_input_int(self):
+        self.assertFalse(dcpb011_extra(1), "should be an array of #'s size=2+")
+
+    def test_extra_array_with_string(self):
+        self.assertFalse(dcpb011_extra([1, "x"]), "should be an array of #'s size=2+")
+
+    def test_extra_array_of_0(self):
+        self.assertFalse(dcpb011_extra([]), "should be an array of #'s size=2+")
+
+    def test_extra_array_of_1(self):
+        self.assertFalse(dcpb011_extra([3]), "should be an array of #'s size=2+")
+
+    def test_extra_array_of_2(self):
+        self.assertEqual(dcpb011_extra([1, 2]), [2, 1], "should be [2, 1]")
+
+    def test_extra_array_of_3(self):
+        self.assertEqual(dcpb011_extra([2, 3, 4]), [12, 8, 6], "should be [12, 8, 6]")
+
+    def test_extra_array_of_5(self):
+        self.assertEqual(dcpb011_extra([1, 2, 3, 4, 5]), [120, 60, 40, 30, 24], "should be [120, 60, 40, 30, 24]")
 
 if __name__ == '__main__':
     unittest.main()
