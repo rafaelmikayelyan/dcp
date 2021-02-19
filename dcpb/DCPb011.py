@@ -33,7 +33,37 @@ def divide_product(array, product):
 
 
 def dcpb011_extra(array):
-    return False
+    if check_array_is_valid(array):
+        return product_o_subarrays(array)
+    else:
+        return False
+
+
+def product_o_subarrays(array):
+    subarray_product = [0] * len(array)
+    i = 0
+    while i < len(array):
+        subarray_product[i] = subarray_product_left(array, i) * subarray_product_right(array, i)
+        i += 1
+    return subarray_product
+
+
+def subarray_product_left(array, i):
+    if i == 0:
+        return 1
+    elif i == 1:
+        return array[i-1]
+    else:
+        return array_product(array[:i])
+
+
+def subarray_product_right(array, i):
+    if i == (len(array) - 1):
+        return 1
+    elif i == (len(array) - 2):
+        return array[i+1]
+    else:
+        return array_product(array[(i+1):])
 
 
 def check_array_is_valid(array):
@@ -103,6 +133,7 @@ class Test(unittest.TestCase):
 
     def test_extra_array_of_5(self):
         self.assertEqual(dcpb011_extra([1, 2, 3, 4, 5]), [120, 60, 40, 30, 24], "should be [120, 60, 40, 30, 24]")
+
 
 if __name__ == '__main__':
     unittest.main()
