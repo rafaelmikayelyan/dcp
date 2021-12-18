@@ -1,4 +1,4 @@
 # Problems
-Going through problems from:
+Going through:
 * Advent of Code
 * Daily Coding Problem
