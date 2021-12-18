@@ -1,2 +1,4 @@
 # Problems
-Going through CS material, refreshing memory, solving problems, learning:)
+Going through problems from:
+* Advent of Code
+* Daily Coding Problem
