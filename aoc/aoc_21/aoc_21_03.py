@@ -38,25 +38,81 @@ def inverse_bits(bits):
 
 
 def convert_to_decimal(bits):
-    binary = 0
+    if(isinstance(bits, list)):
+        bits = convert_to_str(bits)
+    return int(bits, 2)
+
+
+def convert_to_str(bits):
+    string = ''
     for i in bits:
-        binary = binary * 10 + i
-    binary = str(binary)
-    return int(binary, 2)
+        string += str(i)
+    return string
 
 
-def multiply_g_e(gamma, epsilon):
-    return convert_to_decimal(gamma) * convert_to_decimal(epsilon)
+def common_bit(bits, index, criteria):
+    bit_sum = 0
+    for row in bits:
+        bit_sum += int(row[index])
+    chosen_bit = abs(bit_average(bit_sum / len(bits)) + criteria)
+    return str(chosen_bit)
+
+
+def bit_average(ratio):
+    if ratio < .5:
+        return 0
+    else:
+        return 1
+
+
+def searh_bit(bits, position, bit):
+    result = []
+    for row in bits:
+        if row[position] == bit:
+            result.append(row)
+    return result
+
+
+def life_support_rating(raw):
+    oxygen = narrow_down_search(raw.copy(), 0)
+    co2 = narrow_down_search(raw.copy(), -1)
+    return oxygen, co2
+
+
+def narrow_down_search(source, criteria):
+    i = 0
+    while len(source) != 1:
+        source = eliminate_unpop(source, i, common_bit(source, i, criteria))
+        i += 1
+        if i == len(source[0]):
+            break
+    return source[0]
+
+
+def eliminate_unpop(source, bit_position, pop_bit):
+    i = 0
+    while i < len(source):
+        if source[i][bit_position] != pop_bit:
+            source.pop(i)
+            i -= 1
+        i += 1
+    return source
+
 
 
 def run():
     raw = read_file("aoc_21_03_input.txt")
+
     rates = add_vertical_bits(raw)
     gamma = get_average_bits(raw, rates)
     epsilon = inverse_bits(gamma)
-    answer_1 = multiply_g_e(gamma, epsilon)
+
+    answer_1 = convert_to_decimal(gamma) * convert_to_decimal(epsilon)
     print(f'AOC 2021-03-1: {answer_1}')
-    answer_2 = True
+
+    oxygen, co2 = life_support_rating(raw)
+
+    answer_2 = convert_to_decimal(oxygen) * convert_to_decimal(co2)
     print(f'AOC 2021-03-2: {answer_2}')
 
 
