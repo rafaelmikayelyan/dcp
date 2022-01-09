@@ -79,21 +79,17 @@ def calculate_score(board, score, number):
         while i < 5:
             if row[i] == 0:
                 sum_unmarked = sum_unmarked + board[score.index(row)][i]
-                # print(board[score.index(row)][i])
             i = i + 1
-    # print(sum_unmarked)
-    # print(number)
     return sum_unmarked * number
 
 
-def mark_numbers(random_numbers, boards, scores):
+def mark_numbers(randoms, boards, scores):
     winning_board = []
-    for random in random_numbers:
+    for random in randoms:
         for board in boards:
             for row in board:
                 for number in row:
                     if number == random:
-                        print(f'{random} -> {row} : {boards.index(board)}-{board.index(row)}')
                         scores[boards.index(board)][board.index(row)][row.index(number)] = 1
                         winning_board = check_boards(scores)
                         if winning_board:
