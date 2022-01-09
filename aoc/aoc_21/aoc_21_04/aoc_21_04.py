@@ -5,7 +5,36 @@ def read_file(input):
     return data
 
 
-def row_to_int(row):
+def extract_random(raw):
+    random_numbers = []
+    for string in raw.pop(0).split(','):
+        random_numbers.append(int(string))
+    return random_numbers
+
+
+def extract_boards(raw):
+    boards = []
+    score_boards = []
+    board = []
+    score_board = []
+    row = []
+    score_row = []
+
+    for raw_row in raw:
+        if len(raw_row) > 1:
+            row = row_sting_to_int(raw_row.split(' '))
+            score_row = [0] * len(row)
+            board.append(row)
+            score_board.append(score_row)
+            if len(board) == 5:
+                boards.append(board)
+                board = []
+                score_boards.append(score_board)
+                score_board = []
+    return boards, score_boards
+
+
+def row_sting_to_int(row):
     if len(row) > 5:
         index = 0
         while index < 5:
@@ -43,35 +72,6 @@ def check_board(board):
         sum_v = 0
 
 
-def extract_random(raw):
-    random_numbers = []
-    for string in raw.pop(0).split(','):
-        random_numbers.append(int(string))
-    return random_numbers
-
-
-def extract_boards(raw):
-    boards = []
-    score_boards = []
-    board = []
-    score_board = []
-    row = []
-    score_row = []
-
-    for raw_row in raw:
-        if len(raw_row) > 1:
-            row = row_to_int(raw_row.split(' '))
-            score_row = [0] * len(row)
-            board.append(row)
-            score_board.append(score_row)
-            if len(board) == 5:
-                boards.append(board)
-                board = []
-                score_boards.append(score_board)
-                score_board = []
-    return boards, score_boards
-
-
 def calculate_score(board, score, number):
     sum_unmarked = 0
     for row in score:
@@ -79,36 +79,36 @@ def calculate_score(board, score, number):
         while i < 5:
             if row[i] == 0:
                 sum_unmarked = sum_unmarked + board[score.index(row)][i]
+                # print(board[score.index(row)][i])
             i = i + 1
+    # print(sum_unmarked)
+    # print(number)
     return sum_unmarked * number
 
 
-def run():
-    raw = read_file("aoc_21_04_input.txt")
-    # raw = read_file("sample.txt")
-    random_numbers = extract_random(raw)
-    boards, scores = extract_boards(raw)
-
+def mark_numbers(random_numbers, boards, scores):
     winning_board = []
     for random in random_numbers:
         for board in boards:
             for row in board:
                 for number in row:
                     if number == random:
+                        print(f'{random} -> {row} : {boards.index(board)}-{board.index(row)}')
                         scores[boards.index(board)][board.index(row)][row.index(number)] = 1
                         winning_board = check_boards(scores)
                         if winning_board:
-                            break
-                    if winning_board:
-                        break
-                if winning_board:
-                    break
-            if winning_board:
-                break
-        if winning_board:
-            break
+                            return winning_board, random
 
-    answer_1 = calculate_score(boards[scores.index(winning_board)],winning_board, random)
+
+def run():
+    raw = read_file("aoc_21_04_input.txt")
+    # raw = read_file("sample.txt")
+    randoms = extract_random(raw)
+    boards, scores = extract_boards(raw)
+
+    winning_board, last_number = mark_numbers(randoms, boards, scores)
+
+    answer_1 = calculate_score(boards[scores.index(winning_board)], winning_board, last_number)
     print(f'AOC 2021-04-1: {answer_1}')
 
     answer_2 = False
