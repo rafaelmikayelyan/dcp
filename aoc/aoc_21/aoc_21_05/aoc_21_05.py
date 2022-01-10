@@ -63,21 +63,22 @@ def deep_copy(map):
 
 def map_orthogonal_lines(lines, map):
     for line in lines:
-        if line[0] == line[2]:
-            for y in range(min(line[1], line[3]), max(line[1], line[3]) + 1):
-                map[y][line[0]] += 1
-        if line[1] == line[3]:
-            for x in range(min(line[0], line[2]), max(line[0], line[2]) + 1):
-                map[line[1]][x] += 1
+        x1, y1, x2, y2 = line
+        if x1 == x2:
+            for y in range(min(y1, y2), max(y1, y2) + 1):
+                map[y][x1] += 1
+        if y1 == y2:
+            for x in range(min(x1, x2), max(x1, x2) + 1):
+                map[y1][x] += 1
     return map
 
 
 def map_diagonal_lines(lines, map):
     for line in lines:
-        dif = (abs(line[0] - line[2]))
+        dif = (abs(line[0] - line[2])) + 1
         i = 0
         if (abs(line[0] - line[2]) == abs(line[1] - line[3])):
-            y1, x1, y2, x2 = line
+            x1, y1, x2, y2 = line
             if y1 < y2:
                 if x1 < x2:
                     while i < dif:
@@ -93,9 +94,13 @@ def map_diagonal_lines(lines, map):
                         map[y1 - i][x1 + i] += 1
                         i += 1
                 if x1 > x2:
+                    # print(line)
+                    # print_map(map)
                     while i < dif:
                         map[y1 - i][x1 - i] += 1
                         i += 1
+                    # print("-----")
+                    # print_map(map)
     return map
 
 
@@ -121,7 +126,7 @@ def run():
     print(f'AOC 2021-05-1: {answer_1}')
 
     map_w_all_lines = map_diagonal_lines(lines, map)
-    # map_w_all_lines = map_all_lines(lines, deep_copy(map))
+    # map_w_all_lines = map_diagonal_lines(lines, deep_copy(map))
     answer_2 = check_overlaps(map_w_all_lines)
     print(f'AOC 2021-05-2: {answer_2}')
 
