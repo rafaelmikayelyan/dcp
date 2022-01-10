@@ -30,15 +30,11 @@ def get_map_dimensions(lines):
             max_y = line[1]
         if line[3] > max_y:
             max_y = line[3]
-    # return [[0] * max_x] * max_y
     map = []
     y = 0
     while y < max_y + 1:
         map.append([0] * (max_x + 1))
         y += 1
-    # [[0] * max_x] * max_y
-    # map = [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]]
-    # print(map)
     return map
 
 
@@ -94,13 +90,9 @@ def map_diagonal_lines(lines, map):
                         map[y1 - i][x1 + i] += 1
                         i += 1
                 if x1 > x2:
-                    # print(line)
-                    # print_map(map)
                     while i < dif:
                         map[y1 - i][x1 - i] += 1
                         i += 1
-                    # print("-----")
-                    # print_map(map)
     return map
 
 
