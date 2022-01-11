@@ -14,30 +14,6 @@ def split_input(input):
     return output
 
 
-# def next_day(fish):
-#     i = 0
-#     newborn = []
-#     while i < len(fish):
-#         if fish[i] == 0:
-#             fish[i] = 6
-#             newborn.append(8)
-#         else:
-#             fish[i] -= 1
-#         i += 1
-#     if newborn:
-#         fish.extend(newborn)
-#     return fish
-#
-#
-# def population_after(days, raw):
-#     day = 0
-#     while day < days:
-#         # print(day)
-#         next_day(raw)
-#         day += 1
-#     return raw
-
-
 def initialize_timer(population):
     timer = [0] * 9
     for fish in population:
