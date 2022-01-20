@@ -34,10 +34,10 @@ def run():
     # positions = [16,1,2,0,4,2,7,1,2,14] # Sample
 
     answer_1 = cheap_alignment(positions, False)
-    print(f'AOC 2021-05-1: {answer_1}')
+    print(f'AOC 2021-07-1: {answer_1}')
 
     answer_2 = cheap_alignment(positions, True)
-    print(f'AOC 2021-05-2: {answer_2}')
+    print(f'AOC 2021-07-2: {answer_2}')
 
 
 if __name__ == '__main__':
