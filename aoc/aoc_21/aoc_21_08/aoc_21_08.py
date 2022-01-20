@@ -56,10 +56,12 @@ def run():
     # print(txt)
 
     answer_1 = count_occurrences(txt)
-    print(f'AOC 2021-05-1: {answer_1}')
+    print(f'AOC 2021-08-1: {answer_1}')
+
+    decoder = []
 
     answer_2 = decode_line(txt[0])
-    print(f'AOC 2021-05-2: {answer_2}')
+    print(f'AOC 2021-08-2: {answer_2}')
 
 
 if __name__ == '__main__':
