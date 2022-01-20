@@ -57,10 +57,10 @@ def run():
     timer = initialize_timer(population)
 
     answer_1 = count_population(update_timer(timer, DAY_80))
-    print(f'AOC 2021-05-1: {answer_1}')
+    print(f'AOC 2021-06-1: {answer_1}')
 
     answer_2 = count_population(update_timer(timer, DAY_256))
-    print(f'AOC 2021-05-2: {answer_2}')
+    print(f'AOC 2021-06-2: {answer_2}')
 
 
 if __name__ == '__main__':
