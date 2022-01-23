@@ -1,5 +1,5 @@
-def read_file(input):
-    file = open(input, "r")
+def read_file(txt):
+    file = open(txt, "r")
     data = file.read().splitlines()
     file.close()
     return data
@@ -21,7 +21,8 @@ def find_low_points(txt):
 
 def compare_values(l, x, y):
     if less_than_left(l, x, y) and less_than_right(l, x, y) and less_than_above(l, x, y) and less_than_below(l, x, y):
-        return int(l[y][x])
+        # return l[y][x]
+        return [y, x]
 
 
 def less_than_left(l, x, y):
@@ -52,11 +53,37 @@ def less_than_below(l, x, y):
         return True
 
 
+def get_low_point_values(low_points, txt):
+    values = []
+    for p in low_points:
+        values.append(txt[p[0]][p[1]])
+    return values
+
+
 def calculate_risk_level(data):
     result = 0
     for i in data:
-        result += i + 1
+        result += int(i) + 1
     return result
+
+
+def calculate_basins(data):
+    result = 1
+    for i in data:
+        result = result * i
+    return result
+
+
+def find_basins(low_points, txt):
+    result = []
+    for point in low_points:
+        result.append(find_basin_area(point, txt))
+    return result
+
+
+def find_basin_area(point, txt):
+
+    return 1
 
 
 def run():
@@ -65,10 +92,12 @@ def run():
 
     low_points = find_low_points(txt)
 
-    answer_1 = calculate_risk_level(low_points)
+    answer_1 = calculate_risk_level(get_low_point_values(low_points, txt))
     print(f'AOC 2021-09-1: {answer_1}')
 
-    answer_2 = False
+    basins = find_basins(low_points, txt)
+
+    answer_2 = calculate_basins(basins)
     print(f'AOC 2021-09-2: {answer_2}')
 
 
