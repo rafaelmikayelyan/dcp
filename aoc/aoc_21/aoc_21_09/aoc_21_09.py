@@ -10,7 +10,9 @@ def find_low_points(txt):
     x = y = 0
     while y < len(txt):
         while x < len(txt[y]):
-            low_points.append(compare_values(txt, x, y))
+            low_point = compare_values(txt, x, y)
+            if low_point is not None:
+                low_points.append(low_point)
             x += 1
         y += 1
         x = 0
@@ -20,8 +22,6 @@ def find_low_points(txt):
 def compare_values(l, x, y):
     if less_than_left(l, x, y) and less_than_right(l, x, y) and less_than_above(l, x, y) and less_than_below(l, x, y):
         return int(l[y][x])
-    else:
-        return -1
 
 
 def less_than_left(l, x, y):
@@ -60,10 +60,12 @@ def calculate_risk_level(data):
 
 
 def run():
-    txt = read_file("input.txt")
-    # txt = read_file("sample.txt")
+    # txt = read_file("input.txt")
+    txt = read_file("sample.txt")
 
-    answer_1 = calculate_risk_level(find_low_points(txt))
+    low_points = find_low_points(txt)
+
+    answer_1 = calculate_risk_level(low_points)
     print(f'AOC 2021-09-1: {answer_1}')
 
     answer_2 = False
