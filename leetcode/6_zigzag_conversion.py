@@ -44,7 +44,6 @@ def convert(s: str, num_rows: int) -> str:
         return s
 
     solution = ""
-    counter = 0
     row_jump = num_rows * 2 - 2
 
     for i in range(0, num_rows):
