@@ -51,11 +51,8 @@ def convert(s: str, num_rows: int) -> str:
         counter = row_jump - 2 * i
         for j in range(i, len(s), row_jump):
             solution += s[j]
-            # try:
             if (i > 0) and (i < num_rows - 1) and (j + counter <= len(s)):
                 solution += s[j + counter]
-            # except:
-            #     continue
 
     return solution
 
