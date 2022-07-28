@@ -5,8 +5,17 @@
 import unittest
 
 
-def dcpb_01_4(array):
-    return False
+def dcpb_01_4(array: list[int]) -> list[int]:
+    smaller = []
+    for i in range(0, len(array) - 1):
+        counter = 0
+        for j in range(i, len(array)):
+            if array[i] > array[j]:
+                counter += 1
+        smaller.append(counter)
+    smaller.append(0)
+
+    return smaller
 
 
 class Test(unittest.TestCase):
