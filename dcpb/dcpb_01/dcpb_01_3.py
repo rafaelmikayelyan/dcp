@@ -8,9 +8,10 @@ import unittest
 
 def dcpb013(array):
     max_sum = 0
-    for i in range(len(array) - 1):
-        for j in range(i, len(array) + 1):
-            max_sum = max(max_sum, sum(array[i:j]))
+    max_sequential = 0
+    for i in array:
+        max_sequential = max(i, max_sequential + i)
+        max_sum = max(max_sum, max_sequential)
     return max_sum
 
 
