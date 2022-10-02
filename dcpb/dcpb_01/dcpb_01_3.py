@@ -15,6 +15,20 @@ def dcpb013(array):
     return max_sum
 
 
+def dcpb013_extra(array):
+    max_wrap = sum(array) - min_extra_array(array)
+    return max(dcpb013(array), max_wrap)
+
+
+def min_extra_array(array):
+    min_sum = 0
+    min_sequential = 0
+    for i in array:
+        min_sequential = min(i, min_sequential + i)
+        min_sum = min(min_sum, min_sequential)
+    return min_sum
+
+
 class Test(unittest.TestCase):
     def test_array_sum_137(self):
         self.assertEqual(dcpb013([34, -50, 42, 14, -5, 86]), 137,
@@ -24,9 +38,9 @@ class Test(unittest.TestCase):
         self.assertEqual(dcpb013([-34, -50, -42, -14, -5, -86]), 0,
                          "0 from []")
 
-    # def test_extra_array(self):
-    #     self.assertEqual(dcpb013_extra([8, -1, 3, 4]), 15,
-    #                      "15 from [3, 4, 8]")
+    def test_extra_array(self):
+        self.assertEqual(dcpb013_extra([8, -1, 3, 4]), 15,
+                         "15 from [3, 4, 8]")
 
 
 if __name__ == '__main__':
