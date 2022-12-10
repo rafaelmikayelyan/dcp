@@ -3,10 +3,6 @@
 
 class Solution:
     def firstBadVersion(self, n: int) -> int:
-        if n < 2:
-            if isBadVersion(n):
-                return n
-        
         low = 1
         high = n
         output = n
